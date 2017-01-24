@@ -1,0 +1,19 @@
+{
+  "name": "slush-base",
+  "version": "1.0.0",
+  "description": "Base generator for my projects",
+  "main": "slushfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ras <contact@rasputin.io>",
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-conflict": "^0.4.0",
+    "gulp-install": "^0.6.0",
+    "gulp-template": "^4.0.0",
+    "iniparser": "^1.0.5",
+    "inquirer": "^3.0.1"
+  }
+}
