@@ -37,7 +37,7 @@ gulp.task('default', function (done) {
 		if (!answers.ready) {
 			return done()
 		}
-		gulp.src(__dirname + '/templates/app/**')
+		gulp.src(__dirname + '/templates/app/**', { dot: true })
 			.pipe(template(answers))
 			.pipe(conflict('./'))
 			.pipe(gulp.dest('./'))
