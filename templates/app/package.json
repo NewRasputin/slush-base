@@ -4,5 +4,17 @@
 	"description": "<%= description %>",
 	"main": "<%= main %>",
 	"author": "<%= author %> <<%= email %>>",
-	"license": "<%= license %>"
+	"license": "<%= license %>",
+	"dependencies": {
+		"express": "^4.14.0"
+	},
+	"devDependencies": {
+		"babel-core": "^6.22.1",
+		"babel-preset-es2015": "^6.22.0",
+		"gulp": "^3.9.1",
+		"gulp-babel": "^6.1.2",
+		"gulp-livereload": "^3.8.1",
+		"gulp-nodemon": "^2.2.1",
+		"merge-stream": "^1.0.1"
+	}
 }
