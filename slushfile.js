@@ -2,30 +2,33 @@ var gulp = require('gulp')
 var install = require('gulp-install')
 var conflict = require('gulp-conflict')
 var template = require('gulp-template')
+var gutil = require('gulp-util')
 var inquirer = require('inquirer')
 var path = require('path')
 
-var defaults = (function () {
-	homeDir = process.env.USERPROFILE
-	configFile = path.join(homeDir, '.gitconfig')
-	if (require('fs').existsSync(configFile)) {
-		user = require('iniparser').parseSync(configFile).user
-	}
-	return {
-		version: '0.1.0',
-		description: '',
-		main: '',
-		author: {
-			name: user.name,
-			email: user.email
-		},
-		licences: ['ISC', 'MIT', 'BSD']
-	}
-})()
-
 gulp.task('default', function (done) {
+	var defaults = (function () {
+		homeDir = process.env.USERPROFILE
+		configFile = path.join(homeDir, '.gitconfig')
+		if (require('fs').existsSync(configFile)) {
+			user = require('iniparser').parseSync(configFile).user
+		}
+		return {
+			name () {
+				return gulp.args.join(' ')
+			},
+			version: '0.1.0',
+			description: '',
+			main: '',
+			author: {
+				name: user.name,
+				email: user.email
+			},
+			licences: ['ISC', 'MIT', 'BSD']
+		}
+	})()
 	inquirer.prompt([
-		{type: 'input', name: 'name', message: 'Name:', default: gulp.args.join(' ')},
+		{type: 'input', name: 'name', message: 'Name:', default: defaults.name()},
 		{type: 'input', name: 'version', message: 'Version:', default: defaults.version},
 		{type: 'input', name: 'description', message: 'Description:', default: defaults.description},
 		{type: 'input', name: 'main', message: 'Entry point:', default: defaults.main},
@@ -39,11 +42,13 @@ gulp.task('default', function (done) {
 		}
 		gulp.src(__dirname + '/templates/app/**', { dot: true })
 			.pipe(template(answers))
-			.pipe(conflict('./'))
-			.pipe(gulp.dest('./'))
+			.pipe(conflict(defaults.name()))
+			.pipe(gulp.dest(defaults.name()))
 			.pipe(install())
 			.on('finish', function () {
 				done()
+				gutil.log('cd', defaults.name())
+				gutil.log('gulp dev')
 			})
 	})
 })

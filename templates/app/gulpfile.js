@@ -4,7 +4,7 @@ var nodemon = require('gulp-nodemon')
 var merge = require('merge-stream')
 var livereload = require('gulp-livereload')
 
-gulp.task('default', ['server'], () => {
+gulp.task('dev', ['server'], () => {
 	livereload.listen()
 	nodemon({
 		script: 'dist',
