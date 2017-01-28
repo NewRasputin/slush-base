@@ -40,15 +40,16 @@ gulp.task('default', function (done) {
 		if (!answers.ready) {
 			return done()
 		}
-		gulp.src(__dirname + '/templates/app/**', { dot: true })
+		return gulp.src(__dirname + '/templates/app/**', { dot: true })
 			.pipe(template(answers))
 			.pipe(conflict(defaults.name()))
 			.pipe(gulp.dest(defaults.name()))
 			.pipe(install())
-			.on('finish', function () {
+			.on('end', function () {
 				done()
 				gutil.log('cd', defaults.name())
 				gutil.log('gulp dev')
 			})
+			.resume()
 	})
 })
