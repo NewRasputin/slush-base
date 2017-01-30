@@ -6,7 +6,8 @@
 	"author": "<%= author %> <<%= email %>>",
 	"license": "<%= license %>",
 	"dependencies": {
-		"express": "^4.14.0"
+		"express": "^4.14.0",
+		"mongoose": "^4.7.9"
 	},
 	"devDependencies": {
 		"babel-core": "^6.22.1",
