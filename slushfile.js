@@ -19,7 +19,7 @@ gulp.task('default', function (done) {
 			},
 			version: '0.1.0',
 			description: '',
-			main: '',
+			main: 'dist/',
 			author: {
 				name: user.name,
 				email: user.email
